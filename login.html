@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+	
+	    <style>
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F85C3D;
+  margin: 0;
+  padding: 0;
+}
+
+
+h1 {
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+
+#login {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+#btnLogin {
+  background-color: #F85C3D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+#btnLogin:hover {
+  background-color: #0056b3;
+}
+
+
+@media screen and (max-width: 600px) {
+  #login {
+    width: 90%;
+  }
+}
+
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){  
+            
+            var token = localStorage.getItem("accessToken");
+            if(token != null)
+                $(location).prop('href', '/ADN/AlmacenMenu.html');
+            
+            $("#btnLogin").click(function(){
+                var username = $("#username").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                
+                var data = {
+                    "username": username,
+                    "email": email,
+                    "password": password,
+                    "grant_type" : "password",
+                    "client_id" : 101,
+                    "client_secret" : "OGhqS9Yspa9GSBpfsNEfC3py4AREMS3YVLiYEk6m"
+                }
+                
+                $.ajax({  
+                    url: 'http://127.0.0.1:8001/api/Login/token',  
+                    type: 'POST',
+                    headers: {
+                        "Accept" : "application/json",
+                        "Content-Type" : "application/json",
+                    },
+                    data: JSON.stringify(data), // Convertir el objeto de datos a JSON
+                    
+                    success: function(data) {  
+                        localStorage.setItem("accessToken", data.access_token);
+                        $(location).prop('href', '/ADN/AlmacenMenu.html');
+                    },
+                    
+                    error: function(data){
+                        alert("Credenciales inválidas");
+                    } 
+                });  
+            });
+        });  
+    </script>
+</head>
+<body>
+    <h1>Login Funcionario Almacen</h1>
+    
+    <div id="login">
+        Nombre de Usuario: <input type="text" name="username" id="username"> <br>
+        Correo Electrónico: <input type="email" name="email" id="email"> <br>
+        Contraseña: <input type="password" name="password" id="password"> <br>
+        <button id="btnLogin">Login</button>
+    </div>
+</body>
+</html>
