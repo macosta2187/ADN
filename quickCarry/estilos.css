@@ -1,0 +1,365 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{    
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*GENÉRICOS*/
+.centrado{
+    width: 1200px;
+    margin: 0 auto;    
+}
+
+.limpiar{
+    clear:both;
+}
+
+figure{
+    margin: 30px auto;
+}
+
+h1{
+    border-left: 5px solid #F85C3D;
+    padding-left: 15px;
+    letter-spacing: 5px;
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 2.5em;
+    line-height: 1.2em;
+}
+
+/*HEADER*/
+header{
+    width: auto;
+    float: left;
+}
+
+
+/*NAV*/
+nav{
+    width: auto;
+    float:right;
+    margin-top:20px;
+    border-bottom: 5px solid #F85C3D;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav ul li{
+    display: inline-block;
+    padding: 25px 0 25px 40px;
+}
+
+nav ul li.especial{
+    padding-left: 0;
+}
+
+#seleccion {
+    background-color: #F85C3D;
+    color: #ffffff;
+    padding: 25px 20px;
+}
+
+#seleccion:hover {
+    background-color: #ffffff;
+    color: black;
+    padding: 25px 20px;
+}
+
+nav ul li a, nav ul li a:link{
+    font-weight: bold;
+    color:black;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+nav ul li a:hover{
+    color:#F85C3D;
+}
+
+/*FOOTER*/
+footer{
+    background-color: #F85C3D;
+}
+
+footer p{
+    width: 500px;
+    float: left;
+    padding-left: 15px;
+    padding-top: 40px;
+}
+
+#subir{
+    float:right;
+    padding: 15px;
+    width: auto;
+}
+
+#subir a, #subir img{
+    vertical-align: middle;
+}
+
+#subir a, #subir a:link{
+    color:black;
+    text-decoration: none;
+}
+
+/*FRANJA 0*/
+
+#franja0 article{
+    padding: 0 25px;
+    margin:20px 0;
+}
+
+#franja0 .centrado {
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+
+#franja0 article.sabor1, #franja0 article.sabor2{
+    /*tienen padding de 25px*/
+    /*width: 600px;*/
+    /*width: 550px;*/
+    width: 540px;
+    float:left;
+}
+
+#franja0 img {
+    width:150%;
+}
+
+#franja0 article p{
+    margin-top:20px;
+    font-size: 1em;
+    line-height: 1.2em;
+} 
+
+#franja0 article.sabor1{
+    margin-right: 20px;
+    padding-top: 240px;
+}
+
+#franja0 a, #franja0 a:link{
+    background-color: #F85C3D;
+    text-decoration: none;
+    color: #FFFF;
+    font-weight: bold;
+    padding: 20px;
+    display: block;
+    margin: 30px auto 0 auto;
+    width: 200px;
+    text-align: center;
+}
+
+#franja0 a:hover{
+    background-color: white;
+    color: #F85C3D;
+}
+
+
+/*FRANJA 5*/
+#franja5{
+    background-color: #DBDBDB;
+    padding: 30px 0;
+}
+
+
+#franja5 .centrado {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#franja5 article{
+    background-color:  white;
+    padding: 25px;
+    margin:20px 0;
+}
+
+/*FRANJA 1*/
+#franja1 article{
+    background-color:#F85C3D;
+    padding: 25px;
+    margin:20px 0;
+}
+
+#franja1 .centrado {
+    margin-top: 100px;
+}
+
+#franja1 article.sabor1, #franja1 article.sabor2{
+    /*tienen padding de 25px*/
+    /*width: 600px;*/
+    /*width: 550px;*/
+    width: 540px;
+    float:left;
+}
+
+#franja1 article p{
+    margin-top:10px;
+} 
+
+#franja1 article.sabor1{
+    margin-right: 20px;
+}
+
+
+/*FRANJA 2*/
+
+input[type="tel"] {
+    margin-top: 200px;
+    width: 70%;
+    height: 25px;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+  }
+  input[type="tel"]:focus {
+    border: 1px solid #000;
+  }
+  
+  input[type="submit"] {
+    height: 35px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border:1px solid #000;
+    background: #F85C3D;
+    color:#fff;
+  }
+  
+  form {
+    
+    width: 40%;
+    margin: 0 auto;
+  }
+
+#franja2 article{
+    background-color:  #F85C3D;
+    padding: 25px;
+    margin:20px 0;
+}
+
+#franja2 .centrado {
+    margin-top: 150px;
+}
+
+#fondo1{
+    background: url(img/foto1.jpg) no-repeat fixed;
+    background-size:cover;
+    height: 500px;
+}
+
+#franja2 article.sabor1, #franja2 article.sabor2{
+    /*tienen padding de 25px*/
+    /*width: 600px;*/
+    /*width: 550px;*/
+    width: 540px;
+    float:left;
+}
+
+#franja2 article p{
+    margin-top:10px;
+} 
+
+#franja2 article.sabor1{
+    margin-right: 20px;
+}
+
+#franja2 a, #franja2 a:link{
+    background-color: black;
+    text-decoration: none;
+    color: #F85C3D;
+    font-weight: bold;
+    padding: 20px;
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 200px;
+    text-align: center;
+}
+
+#franja2 a:hover{
+    background-color: white;
+}
+
+/*FRANJA 3*/
+#franja3 article{
+    background-color:  #DBDBDB;
+    padding: 25px;
+    margin:20px 0;
+}
+
+#franja3 .centrado {
+    margin-top: 100px;
+}
+
+#franja3 article.sabor1, #franja3 article.sabor2{
+    /*tienen padding de 25px*/
+    /*width: 600px;*/
+    /*width: 550px;*/
+    width: 540px;
+    float:left;
+}
+
+#franja3 article p{
+    margin-top:10px;
+} 
+
+#franja3 article.sabor1{
+    margin-right: 20px;
+}
+
+/*FRANJA 4*/
+
+#franja4{
+    background-color: #DBDBDB;
+    padding: 30px 0;
+}
+
+#franja4 article{
+    padding: 0 25px;
+    margin:20px 0;
+}
+
+#franja4 .centrado {
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+
+#franja4 article.sabor1, #franja4 article.sabor2{
+    /*tienen padding de 25px*/
+    /*width: 600px;*/
+    /*width: 550px;*/
+    width: 540px;
+    float:left;
+}
+
+#franja4 img {
+    width:100%;
+}
+
+#franja4 article p{
+    margin-top:20px;
+    font-size: 1em;
+    line-height: 1.2em;
+} 
+
+#franja4 article.sabor1{
+    margin-right: 20px;
+}
+
+#franja4 article.sabor2{
+    margin-top: 150px;
+}
+
+
+#franja4 ul{
+    list-style-type: none;
+}
