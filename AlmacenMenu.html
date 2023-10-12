@@ -77,7 +77,7 @@ body {
         $(document).ready(function(){
             var token = localStorage.getItem("accessToken");
             if(token == null)
-            $(location).prop('href', '/ADN/login.html');
+            $(location).prop('href', '/ADN/Login_Almacen.html');
             
             $("#cerrarSesion").click(function(){
                 jQuery.ajax({  
@@ -90,7 +90,7 @@ body {
                     },
                     success: function(data) {  
                         localStorage.removeItem("accessToken");
-                        $(location).prop('href', '/ADN/login.html');
+                        $(location).prop('href', '/ADN/Login_Almacen.html');
                     }
                     
                 });  
