@@ -119,7 +119,7 @@
         $(document).ready(function() {
             var token = localStorage.getItem("accessToken");
             if (token != null)
-                $(location).prop('href', '/ADN/AlmacenMenu.html');
+                $(location).prop('href', '/ADN/Gestion Choferes.html');
 
             $("#btnLogin").click(function() {
                 var nombre = $("#nombre").val();
@@ -141,7 +141,7 @@
 
                     success: function(data) {
                         localStorage.setItem("accessToken", data.access_token);
-                        $(location).prop('href', '/ADN/AlmacenMenu.html');
+                        $(location).prop('href', '/ADN/Gestion Choferes.html');
                     },
 
                     error: function(data) {                       

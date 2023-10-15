@@ -3,125 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <title>Aplicación de Almacén</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F85C3D;
-            margin: 0;
-            padding: 0;
+        .bg-custom-orange {
+            background-color: #e16b16fb;
         }
 
-        h1 {
-            text-align: center;
-            color: #FFFFFF;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
-
-        td button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        td button:hover {
-            background-color: #555;
-        }
-
-        /* Estilos para el elemento de selección (select) */
-        select {
-            padding: 5px;
-            margin: 10px;
-            font-size: 16px;
-        }
-
-        /* Estilos para la etiqueta del elemento de selección */
-        label {
-            font-size: 18px;
-            color: #FFFFFF;
-        }
-
-        #sumaPesosLabel {
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
+        .table-hover tbody tr:hover {
+            background-color: #e16b16fb;
+          
         }
     </style>
 </head>
+
 <body>
-    <h1>Aplicación de Almacén</h1>
-    <h1>Paquetes cargados actualmente en el sistema</h1>
-    <h1>Los camiones tienen un MÁXIMO de 1000 KG</h1>
+    <header class="bg-custom-orange text-white">
+        <div class="container">
+            <h1 class="text-center">Aplicación de Almacén</h1>
+        </div>
+    </header>
 
-<label for="filtroDepartamento">Filtrar por Departamento:</label>
-<select id="filtroDepartamento">
-    <option value="">Todos</option>
-    <option value="Artigas">Artigas</option>
-    <option value="Canelones">Canelones</option>
-    <option value="Cerro Largo">Cerro Largo</option>
-    <option value="Colonia">Colonia</option>
-    <option value="Durazno">Durazno</option>
-    <option value="Flores">Flores</option>
-    <option value="Florida">Florida</option>
-    <option value="Lavalleja">Lavalleja</option>
-    <option value="Maldonado">Maldonado</option>
-    <option value="Montevideo">Montevideo</option>
-    <option value="Paysandú">Paysandú</option>
-    <option value="Río Negro">Río Negro</option>
-    <option value="Rivera">Rivera</option>
-    <option value="Rocha">Rocha</option>
-    <option value="Salto">Salto</option>
-    <option value="San José">San José</option>
-    <option value="Soriano">Soriano</option>
-    <option value="Tacuarembó">Tacuarembó</option>
-    <option value="Treinta y Tres">Treinta y Tres</option>
-   
-</select>
 
-    <label for="filtroPeso">Filtrar por Peso:</label>
-    <select id="filtroPeso">
-        <option value="">Todos</option>
-        <option value="1000">Menos de 1000 kg</option>
-    </select>
 
-    <label for="inputLote">LOTE:</label>
-    <input type="number" id="inputLote" placeholder="Ingrese el número de lote" min="1">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="filtroDepartamento">Filtrar por Departamento:</label>
+                    <select id="filtroDepartamento" class="form-control">
+                        <option value="">Todos</option>
+                        <option value="Artigas">Artigas</option>
+                        <option value="Canelones">Canelones</option>
+                        <option value="Cerro Largo">Cerro Largo</option>
+                        <option value="Colonia">Colonia</option>
+                        <option value="Durazno">Durazno</option>
+                        <option value="Flores">Flores</option>
+                        <option value="Florida">Florida</option>
+                        <option value="Lavalleja">Lavalleja</option>
+                        <option value="Maldonado">Maldonado</option>
+                        <option value="Montevideo">Montevideo</option>
+                        <option value="Paysandú">Paysandú</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Rivera">Rivera</option>
+                        <option value="Rocha">Rocha</option>
+                        <option value="Salto">Salto</option>
+                        <option value="San José">San José</option>
+                        <option value="Soriano">Soriano</option>
+                        <option value="Tacuarembó">Tacuarembó</option>
+                        <option value="Treinta y Tres">Treinta y Tres</option>
+                    </select>
+                </div>
+            </div>
 
-    <label for="camionesSelect">Selecciona un camión:</label>
-    <select id="camionesSelect"></select>
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="filtroPeso">Filtrar por Peso:</label>
+                    <select id="filtroPeso" class="form-control">
+                        <option value="">Todos</option>
+                        <option value="1000">Menos de 1000 kg</option>
+                    </select>
+                </div>
+            </div>
 
-    <button onclick="consolidarPaquetes()">Consolidar Paquetes</button>
-	
-	
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="inputLote" class="small">LOTE:</label>
+                    <input type="text" id="inputLote" class="form-control" placeholder="Ingrese el número de lote" pattern="\d{1,3}" title="Ingresa un número de hasta 3 dígitos" required>
+                </div>
+            </div>          
+              </div>
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="camionesSelect">Selecciona un camión:</label>
+                    <select id="camionesSelect" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <thead>
+
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Numero de Paquete</th>
                 <th>Calle</th>
@@ -139,11 +104,15 @@
         <tbody id="paquetesData"></tbody>
     </table>
 
-    <div id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
+
+    <div class="alert alert-info" role="alert" id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
+    <button onclick="consolidarPaquetes()" class="btn btn-warning mx-auto d-block">Consolidar Paquetes</button>
+
+
 
     <script>
-	
-		
+
+
         const camionesSelect = document.getElementById('camionesSelect');
         const filtroDepartamento = document.getElementById('filtroDepartamento');
         const filtroPeso = document.getElementById('filtroPeso');
@@ -164,10 +133,8 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Limpiar el combobox
-                    camionesSelect.innerHTML = '';
 
-                    // Iterar sobre los camiones y agregar opciones al combobox
+                    camionesSelect.innerHTML = '';
                     data.forEach(camion => {
                         const option = document.createElement('option');
                         option.value = camion.id_camion;
@@ -180,6 +147,12 @@
                 });
         }
 
+        function desmarcarCheckboxes() {
+            const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]');
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+            });
+        }
         function cargarPaquetes() {
             fetch('http://127.0.0.1:8003/api/Paquete', {
                 method: 'GET',
@@ -220,7 +193,9 @@
                         <td>${paquete.peso}</td>
                         <td>${paquete.telefono}</td>
                         <td>${paquete.fecha}</td>
-                        <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}"></td>
+                        <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}" data-peso="${paquete.peso}"></td>
+                        
+
                     `;
                     paquetesData.appendChild(row);
                 }
@@ -229,12 +204,20 @@
             const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function () {
+                    const pesoDelPaquete = parseFloat(this.getAttribute('data-peso'));
+
                     if (this.checked) {
-                        sumaPesos += parseFloat(this.value);
+                        sumaPesos += pesoDelPaquete;
                     } else {
-                        sumaPesos -= parseFloat(this.value);
+                        sumaPesos -= pesoDelPaquete;
                     }
                     sumaPesosLabel.textContent = `Peso Total del envío en kg: ${sumaPesos.toFixed(2)} kg`;
+
+                    if (sumaPesos >= 20) {
+                        alert("El peso total es igual o mayor a 20 kg. Máxima capacidad de carga alcanzada");
+                        sumaPesosLabel.textContent = `Peso Total del envío en kg: 0.00 kg`;
+                        desmarcarCheckboxes();
+                    }
                 });
             });
         }
@@ -246,7 +229,7 @@
         function consolidarPaquetes() {
             const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]:checked');
             const loteValue = parseInt(document.getElementById('inputLote').value);
-            const camionSeleccionado = parseInt(camionesSelect.value); // Obtener el valor seleccionado del combobox como número entero
+            const camionSeleccionado = parseInt(camionesSelect.value);
 
             if (isNaN(loteValue)) {
                 alert("Ingresa un valor de lote válido.");
@@ -268,6 +251,7 @@
             });
 
             const url = 'http://127.0.0.1:8003/api/PaqueteLote';
+            sumaPesosLabel.textContent = `Peso Total del envío en kg: 0.00 kg`;
 
             fetch(url, {
                 method: 'POST',
@@ -276,47 +260,46 @@
                 },
                 body: JSON.stringify({ Paquetes: paquetesAConsolidar }),
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message);
-                    cargarPaquetes();
-                } else {
-                    alert('Error al consolidar paquetes.');
-                }
-            })
-            .catch(error => {
-                console.error('Error al consolidar paquetes:', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message);
+                        cargarPaquetes();
+                    } else {
+                        alert('Error al consolidar paquetes.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al consolidar paquetes:', error);
+                });
         }
-		
-		    $(document).ready(function(){
+
+        $(document).ready(function () {
             var token = localStorage.getItem("accessToken");
-            if(token == null)
-            $(location).prop('href', '/ADN/login.html');
-            
-            $("#cerrarSesion").click(function(){
-                jQuery.ajax({  
-                    url: 'http://127.0.0.1:8001/api/logout',  
+            if (token == null)
+                $(location).prop('href', '/ADN/Login_Almacen.html');
+
+            $("#cerrarSesion").click(function () {
+                jQuery.ajax({
+                    url: 'http://127.0.0.1:8001/api/logout',
                     type: 'GET',
                     headers: {
-                        "Authorization" : "Bearer " + localStorage.getItem("accessToken"),
-                        "Accept" : "application/json",
-                        "Content-Type" : "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("accessToken"),
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
                     },
-                    success: function(data) {  
+                    success: function (data) {
                         localStorage.removeItem("accessToken");
-                        $(location).prop('href', '/ADN/login.html');
+                        $(location).prop('href', '/ADN/Login_Almacen.html');
                     }
-                    
-                });  
+
+                });
             });
-            
+
         });
 
-
-
     </script>
-	    <button id="cerrarSesion">Cerrar sesion</button>
+
 </body>
+
 </html>

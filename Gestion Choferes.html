@@ -3,94 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/jquery-3.5.1.slim.min.js"></script>
     <title>Tabla de Lotes</title>
-    <style>
-                body {
-            font-family: Arial, sans-serif;
-            background-color: #F85C3D;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            color: #FFFFFF;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
-
-        td button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        td button:hover {
-            background-color: #555;
-        }
-
-        /* Estilos para el elemento de selección (select) */
-        select {
-            padding: 5px;
-            margin: 10px;
-            font-size: 16px;
-        }
-
-        /* Estilos para la etiqueta del elemento de selección */
-        label {
-            font-size: 18px;
-            color: #FFFFFF;
-        }
-
-        #sumaPesosLabel {
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
-    <h1>Aplicacion Choferes</h1>
-	<h1>Paquetes y lotes asignados al Camion</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Numero de Lote</th>
-                <th>Camión ID</th>
-                <th>Numero de Paquete</th>
-                <th>Estatus del envio</th>
-            </tr>
-        </thead>
-        <tbody id="lotesData"></tbody>
-    </table>
-
+    <div class="container mt-5">
+        <h1 class="mb-4">Aplicación Choferes</h1>
+        <h2>Paquetes y lotes asignados al Camión</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Número de Lote</th>
+                    <th>Lote Asignado</th>
+                    <th>Número de Paquete</th>
+                    <th>Paquetes en Lote</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="lotesData"></tbody>
+        </table>
+        <button id="cerrarSesion" class="btn btn-danger">Cerrar sesión</button>
+    </div>
     <script>
         const lotesData = document.getElementById('lotesData');
 
@@ -155,12 +92,10 @@
         function cambiarEstatus(loteId, nuevoEstatus) {
             const url = `http://127.0.0.1:8003/api/Lote/${loteId}`;
 
-            // Datos para la solicitud PUT
+
             const data = {
                 estatus: nuevoEstatus
             };
-
-            // Opciones de la solicitud PUT
             const options = {
                 method: 'PUT',
                 headers: {
@@ -168,8 +103,6 @@
                 },
                 body: JSON.stringify(data)
             };
-
-            // Realizar la solicitud PUT
             fetch(url, options)
                 .then(response => {
                     if (!response.ok) {
@@ -178,7 +111,6 @@
                     return response.json();
                 })
                 .then(loteActualizado => {
-                    // Manejar la respuesta JSON con el lote actualizado
                     console.log('Lote actualizado:', loteActualizado);
                     alert('Estatus actualizado con éxito.');
                 })
@@ -188,34 +120,33 @@
                 });
         }
 
-        // Cargar los datos al cargar la página
+
         cargarDatos();
-		
-		    $(document).ready(function(){
+
+        $(document).ready(function () {
             var token = localStorage.getItem("accessToken");
-            if(token == null)
-            $(location).prop('href', '/ADN/loginchofer.html');
-            
-            $("#cerrarSesion").click(function(){
-                jQuery.ajax({  
-                    url: 'http://127.0.0.1:8001/api/logout',  
+            if (token == null)
+                $(location).prop('href', '/ADN/Login_Choferes.html');
+
+            $("#cerrarSesion").click(function () {
+                jQuery.ajax({
+                    url: 'http://127.0.0.1:8001/api/logout',
                     type: 'GET',
                     headers: {
-                        "Authorization" : "Bearer " + localStorage.getItem("accessToken"),
-                        "Accept" : "application/json",
-                        "Content-Type" : "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("accessToken"),
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
                     },
-                    success: function(data) {  
+                    success: function (data) {
                         localStorage.removeItem("accessToken");
-                        $(location).prop('href', '/ADN/loginchofer.html');
+                        $(location).prop('href', '/ADN/Login_Choferes.html');
                     }
-                    
-                });  
+
+                });
             });
-            
+
         });
     </script>
-	  <button id="cerrarSesion">Cerrar sesion</button>
+    <script src="js/jquery.min.js"></script>
 </body>
-
 </html>
