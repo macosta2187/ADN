@@ -22,19 +22,7 @@
         });
 
 
-        const fechaActual = new Date();
-        const anio = fechaActual.getFullYear();
-        const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0');
-        const dia = fechaActual.getDate().toString().padStart(2, '0');
-
-
-        const horaActual = fechaActual.getHours().toString().padStart(2, '0');
-        const minutoActual = fechaActual.getMinutes().toString().padStart(2, '0');
-        const horaFormateada = `${horaActual}:${minutoActual}`;
-
-
-        document.getElementById('fecha').value = `${anio}-${mes}-${dia}`;
-        document.getElementById('hora').value = horaFormateada;
+        
 
         $(document).ready(function () {
             var token = localStorage.getItem("accessToken");

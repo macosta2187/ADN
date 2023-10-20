@@ -91,7 +91,7 @@
     <h1>Login Funcionario Almacen</h1>
 
     <div id="login">
-        Nombre: <input type="text" name="nombre" id="nombre"> <br>
+        Email: <input type="text" name="email" id="email"> <br>
         Contraseña: <input type="password" name="contraseña" id="contraseña"> <br>
         <button id="btnLogin">Login</button>
     </div>
@@ -122,11 +122,11 @@
                 $(location).prop('href', '/ADN/AlmacenMenu.html');
 
             $("#btnLogin").click(function() {
-                var nombre = $("#nombre").val();
+                var email = $("#email").val();
                 var contraseña = $("#contraseña").val();
 
                 var data = {
-                    "nombre": nombre,
+                    "email": email,
                     "contraseña": contraseña
                 }
 
