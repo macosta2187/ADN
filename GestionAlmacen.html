@@ -226,53 +226,45 @@
         filtroPeso.addEventListener('change', actualizarTabla);
         cargarPaquetes();
 
-        function consolidarPaquetes() {
-            const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]:checked');
-            const loteValue = parseInt(document.getElementById('inputLote').value);
-            const camionSeleccionado = parseInt(camionesSelect.value);
 
-            if (isNaN(loteValue)) {
-                alert("Ingresa un valor de lote válido.");
-                return;
-            }
 
-            if (checkboxes.length === 0) {
-                alert("Selecciona al menos un paquete para consolidar.");
-                return;
-            }
 
-            const paquetesAConsolidar = Array.from(checkboxes).map(checkbox => {
-                return {
-                    paqueteId: parseInt(checkbox.value),
-                    lote: loteValue,
-                    estatus: "Consolidado",
-                    camionId: camionSeleccionado
-                };
-            });
+    function consolidarPaquetes() {
+    const camionSeleccionado = parseInt(document.getElementById('camionesSelect').value);
+    const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]:checked');
 
-            const url = 'http://127.0.0.1:8003/api/PaqueteLote';
-            sumaPesosLabel.textContent = `Peso Total del envío en kg: 0.00 kg`;
+    if (checkboxes.length === 0) {
+        alert("Selecciona al menos un paquete para consolidar.");
+        return;
+    }
 
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ Paquetes: paquetesAConsolidar }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message) {
-                        alert(data.message);
-                        cargarPaquetes();
-                    } else {
-                        alert('Error al consolidar paquetes.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al consolidar paquetes:', error);
-                });
+    const selectedPackages = Array.from(checkboxes).map(checkbox => checkbox.value);
+    const data = {
+        selectedCamion: camionSeleccionado,
+        selectedPackages: JSON.stringify({ Paquetes: selectedPackages })
+    };
+
+    fetch('http://127.0.0.1:8003/api/PaqueteLote', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Paquetes consolidados correctamente.");
+            // Realiza una solicitud para cargar los datos actualizados de paquetes
+            cargarPaquetes();
+        } else {
+            alert("Hubo un error al consolidar los paquetes.");
         }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+}
+
 
         $(document).ready(function () {
             var token = localStorage.getItem("accessToken");
@@ -296,6 +288,10 @@
                 });
             });
 
+        });
+
+        window.addEventListener('beforeunload', function() {
+            localStorage.removeItem("accessToken");
         });
 
     </script>
