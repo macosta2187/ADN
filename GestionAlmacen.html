@@ -96,6 +96,7 @@
                 <th>Peso</th>
                 <th>Fecha de Ingreso</th>
                 <th>Hora de Ingreso</th>
+                <th>Tracking</th>
                 <th>Seleccionar</th>
             </tr>
         </thead>
@@ -193,6 +194,7 @@
                         <td>${paquete.peso}</td>
                         <td>${paquete.fecha_creacion}</td>
                         <td>${paquete.hora_creacion}</td>
+                        <td>${paquete.codigo_seguimiento}</td>
                         <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}" data-peso="${paquete.peso}"></td>
                         
 
@@ -213,8 +215,8 @@
                     }
                     sumaPesosLabel.textContent = `Peso Total del envío en kg: ${sumaPesos.toFixed(2)} kg`;
 
-                    if (sumaPesos >= 20) {
-                        alert("El peso total es igual o mayor a 20 kg. Máxima capacidad de carga alcanzada");
+                    if (sumaPesos >= 1000) {
+                        alert("El peso total es igual o mayor a 1000 kg. Máxima capacidad de carga alcanzada");
                         sumaPesosLabel.textContent = `Peso Total del envío en kg: 0.00 kg`;
                         desmarcarCheckboxes();
                     }
