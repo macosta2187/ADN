@@ -90,35 +90,27 @@
                 <th>Calle</th>                
                 <th>Localidad</th>
                 <th>Departamento</th>
-                <th>Telefono</th>
-                <th>Estado</th>
+                <th>Telefono</th>               
                 <th>Tamaño</th>
                 <th>Peso</th>
                 <th>Fecha de Ingreso</th>
                 <th>Hora de Ingreso</th>
                 <th>Tracking</th>
                 <th>Seleccionar</th>
+                <th>Cambio de Estado</th>               
             </tr>
         </thead>
         <tbody id="paquetesData"></tbody>
     </table>
-
-
     <div class="alert alert-info" role="alert" id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
     <button onclick="consolidarPaquetes()" class="btn btn-warning mx-auto d-block">Consolidar Paquetes</button>
-
-
-
     <script>
-
-
         const camionesSelect = document.getElementById('camionesSelect');
         const filtroDepartamento = document.getElementById('filtroDepartamento');
         const filtroPeso = document.getElementById('filtroPeso');
         const paquetesData = document.getElementById('paquetesData');
         const sumaPesosLabel = document.getElementById('sumaPesosLabel');
         const consolidarButton = document.querySelector('button');
-
         let paquetes = [];
 
         listarCamiones();
@@ -188,15 +180,25 @@
                         <td>${paquete.calle}</td>                        
                         <td>${paquete.localidad}</td>
                         <td>${paquete.departamento}</td>
-                        <td>${paquete.telefono}</td>
-                        <td>${paquete.estado}</td>
+                        <td>${paquete.telefono}</td>                        
                         <td>${paquete.tamaño}</td>
                         <td>${paquete.peso}</td>
                         <td>${paquete.fecha_creacion}</td>
                         <td>${paquete.hora_creacion}</td>
                         <td>${paquete.codigo_seguimiento}</td>
                         <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}" data-peso="${paquete.peso}"></td>
-                        
+                        <td><select class="form-control" onchange="cambiarEstado(this, ${paquete.id})">
+        <option value="Ingresado" ${paquete.estado === 'Ingresado' ? 'selected' : ''}>Ingresado</option>
+        <option value="En almacen origen" ${paquete.estado === 'En almacen origen' ? 'selected' : ''}>En almacen origen</option>
+        <option value="En transito" ${paquete.estado === 'En transito' ? 'selected' : ''}>En transito</option>
+        <option value="En almacen destino" ${paquete.estado === 'En almacen destino' ? 'selected' : ''}>En almacen destino</option>
+        <option value="Disponible en pick up" ${paquete.estado === 'Disponible en pick up' ? 'selected' : ''}>Disponible en pick up</option>
+        <option value="En distribucion" ${paquete.estado === 'En distribucion' ? 'selected' : ''}>En distribucion</option>
+        <option value="Reagenda entrega" ${paquete.estado === 'Reagenda entrega' ? 'selected' : ''}>Reagenda entrega</option>
+        <option value="Entregado" ${paquete.estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
+    </select>
+</td>
+
 
                     `;
                     paquetesData.appendChild(row);
@@ -255,8 +257,7 @@
     })
     .then(response => {
         if (response.ok) {
-            alert("Paquetes consolidados correctamente.");
-            // Realiza una solicitud para cargar los datos actualizados de paquetes
+            alert("Paquetes consolidados correctamente.");          
             cargarPaquetes();
         } else {
             alert("Hubo un error al consolidar los paquetes.");
@@ -266,8 +267,6 @@
         console.error('Error en la solicitud:', error);
     });
 }
-
-
         $(document).ready(function () {
             var token = localStorage.getItem("accessToken");
             if (token == null)
@@ -291,11 +290,33 @@
             });
 
         });
+        function cambiarEstado(select, paqueteId) {
+        const nuevoEstado = select.value;
 
+    fetch(`http://127.0.0.1:8003/api/PaqueteEstado/${paqueteId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ estado: nuevoEstado }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(`El estado del paquete ${paqueteId} se cambió a "${nuevoEstado}".`);
+            cargarPaquetes(); 
+        } else {
+            alert("Hubo un error al cambiar el estado del paquete.");
+            cargarPaquetes(); 
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud API:', error);
+        cargarPaquetes();
+    });
+}
         window.addEventListener('beforeunload', function() {
             localStorage.removeItem("accessToken");
         });
-
     </script>
 
 </body>
