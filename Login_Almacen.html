@@ -91,8 +91,8 @@
     <h1>Login Funcionario Almacen</h1>
 
     <div id="login">
-        Nombre: <input type="text" name="nombre" id="nombre"> <br>
-        Contraseña: <input type="password" name="contraseña" id="contraseña"> <br>
+        Email: <input type="text" name="email" id="email"  maxlength="50"> <br> <br> 
+       Contraseña: <input type="password" name="contraseña" id="contraseña" required minlength="12" maxlength="12"> <br>
         <button id="btnLogin">Login</button>
     </div>
 
@@ -110,24 +110,27 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
+			
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() {			
+			
             var token = localStorage.getItem("accessToken");
             if (token != null)
                 $(location).prop('href', '/ADN/AlmacenMenu.html');
 
             $("#btnLogin").click(function() {
-                var nombre = $("#nombre").val();
+                var email = $("#email").val();
                 var contraseña = $("#contraseña").val();
 
                 var data = {
-                    "nombre": nombre,
+                    "email": email,
                     "contraseña": contraseña
+				
                 }
 
                 $.ajax({
@@ -152,6 +155,9 @@
                 });
             });
         });
+		
+
+		
     </script>
 </body>
 </html>

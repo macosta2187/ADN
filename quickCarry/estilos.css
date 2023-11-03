@@ -5,6 +5,9 @@
 
 body{    
     font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 3em;
 }
 
 /*GENÉRICOS*/
@@ -41,15 +44,43 @@ header{
 
 
 /*NAV*/
+
 nav{
-    width: auto;
+width: auto;
     float:right;
     margin-top:20px;
-    border-bottom: 5px solid #F85C3D;
 }
 
-nav ul{
-    list-style-type: none;
+nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight:600;
+    font-size: 15px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    position: relative;
+    
+}
+
+nav ul li a::after{
+    content: "";
+    position: absolute;
+    background-color: #F85C3D;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.4s;
+}
+
+nav ul li a:hover{
+color: #F85C3D;
+
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+
 }
 
 nav ul li{
@@ -57,6 +88,7 @@ nav ul li{
     padding: 25px 0 25px 40px;
 }
 
+/*
 nav ul li.especial{
     padding-left: 0;
 }
@@ -83,11 +115,14 @@ nav ul li a, nav ul li a:link{
 
 nav ul li a:hover{
     color:#F85C3D;
-}
+}*/
 
 /*FOOTER*/
 footer{
     background-color: #F85C3D;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p{
@@ -251,7 +286,7 @@ input[type="tel"] {
 }
 
 #fondo1{
-    background: url(img/foto1.jpg) no-repeat fixed;
+    background: url(img/foto11.jpg) no-repeat fixed;
     background-size:cover;
     height: 500px;
 }
@@ -362,4 +397,34 @@ input[type="tel"] {
 
 #franja4 ul{
     list-style-type: none;
+}
+
+
+
+/*PAGINA - INICIO DE SESION*/
+#franja6 article{
+    background-color:#F85C3D;
+    padding: 25px;
+    margin:20px 0;
+}
+
+#franja6 .centrado {
+    margin-top: 100px;
+}
+
+#franja6 article.log1, #franja6 article.log2, #franja6 article.log3{
+    /*tienen padding de 25px*/
+    /*width: 600px;*/
+    /*width: 550px;*/
+    width: 28%;
+    float:left;
+    height:250px; /*chequear*/
+}
+
+#franja6 article p{
+    margin-top:10px;
+} 
+
+#franja6 article.log1, #franja6 article.log2{
+    margin-right: 20px;
 }

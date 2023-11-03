@@ -3,147 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <title>Aplicación de Almacén</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F85C3D;
-            margin: 0;
-            padding: 0;
+        .bg-custom-orange {
+            background-color: #e16b16fb;
         }
 
-        h1 {
-            text-align: center;
-            color: #FFFFFF;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
-
-        td button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        td button:hover {
-            background-color: #555;
-        }
-
-        /* Estilos para el elemento de selección (select) */
-        select {
-            padding: 5px;
-            margin: 10px;
-            font-size: 16px;
-        }
-
-        /* Estilos para la etiqueta del elemento de selección */
-        label {
-            font-size: 18px;
-            color: #FFFFFF;
-        }
-
-        #sumaPesosLabel {
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
+        .table-hover tbody tr:hover {
+            background-color: #e16b16fb;
+          
         }
     </style>
 </head>
+
 <body>
-    <h1>Aplicación de Almacén</h1>
-    <h1>Paquetes cargados actualmente en el sistema</h1>
-    <h1>Los camiones tienen un MÁXIMO de 1000 KG</h1>
+    <header class="bg-custom-orange text-white">
+        <div class="container">
+            <h1 class="text-center">Aplicación de Almacén</h1>
+        </div>
+    </header>
 
-<label for="filtroDepartamento">Filtrar por Departamento:</label>
-<select id="filtroDepartamento">
-    <option value="">Todos</option>
-    <option value="Artigas">Artigas</option>
-    <option value="Canelones">Canelones</option>
-    <option value="Cerro Largo">Cerro Largo</option>
-    <option value="Colonia">Colonia</option>
-    <option value="Durazno">Durazno</option>
-    <option value="Flores">Flores</option>
-    <option value="Florida">Florida</option>
-    <option value="Lavalleja">Lavalleja</option>
-    <option value="Maldonado">Maldonado</option>
-    <option value="Montevideo">Montevideo</option>
-    <option value="Paysandú">Paysandú</option>
-    <option value="Río Negro">Río Negro</option>
-    <option value="Rivera">Rivera</option>
-    <option value="Rocha">Rocha</option>
-    <option value="Salto">Salto</option>
-    <option value="San José">San José</option>
-    <option value="Soriano">Soriano</option>
-    <option value="Tacuarembó">Tacuarembó</option>
-    <option value="Treinta y Tres">Treinta y Tres</option>
-   
-</select>
 
-    <label for="filtroPeso">Filtrar por Peso:</label>
-    <select id="filtroPeso">
-        <option value="">Todos</option>
-        <option value="1000">Menos de 1000 kg</option>
-    </select>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="filtroGrupo">Filtrar por Grupo:</label>
+                    <select id="filtroGrupo" class="form-control">
+                        <option value="">Todos</option>
+                        <option value="Grupo 1">Grupo 1</option>
+                        <option value="Grupo 2">Grupo 2</option>
+                        <option value="Grupo 3">Grupo 3</option>
+                        <option value="Grupo 4">Grupo 4</option>
+                        <option value="Grupo 5">Grupo 5</option>
+                    </select>
+                </div>
+            </div>
 
-    <label for="inputLote">LOTE:</label>
-    <input type="number" id="inputLote" placeholder="Ingrese el número de lote" min="1">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="filtroPeso">Filtrar por Peso:</label>
+                    <select id="filtroPeso" class="form-control">
+                        <option value="">Todos</option>
+                        <option value="1000">Menos de 1000 kg</option>
+                    </select>
+                </div>
+            </div>
 
-    <label for="camionesSelect">Selecciona un camión:</label>
-    <select id="camionesSelect"></select>
+            
+            </div>          
+              </div>
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="camionesSelect">Selecciona un camión:</label>
+                    <select id="camionesSelect" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <button onclick="consolidarPaquetes()">Consolidar Paquetes</button>
-	
-	
 
-    <table>
-        <thead>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Numero de Paquete</th>
-                <th>Calle</th>
-                <th>Número de puerta</th>
+                <th>Descripcion</th>
+                <th>Numero</th>
+                <th>Calle</th>                
                 <th>Localidad</th>
-                <th>Departamento destino</th>
-                <th>Estatus</th>
-                <th>Tamaño del paquete</th>
-                <th>Peso (kg)</th>
-                <th>Teléfono contacto</th>
-                <th>Fecha de recepción</th>
+                <th>Departamento</th>
+                <th>Telefono</th>               
+                <th>Tamaño</th>
+                <th>Peso</th>
+                <th>Fecha de Ingreso</th>
+                <th>Hora de Ingreso</th>
+                <th>Tracking</th>
                 <th>Seleccionar</th>
+                <th>Cambio de Estado</th>               
             </tr>
         </thead>
         <tbody id="paquetesData"></tbody>
     </table>
-
-    <div id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
-
+    <div class="alert alert-info" role="alert" id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
+    <button onclick="consolidarPaquetes()" class="btn btn-warning mx-auto d-block">Consolidar Paquetes</button>
     <script>
-	
-		
+
+
         const camionesSelect = document.getElementById('camionesSelect');
         const filtroDepartamento = document.getElementById('filtroDepartamento');
         const filtroPeso = document.getElementById('filtroPeso');
@@ -151,7 +99,9 @@
         const sumaPesosLabel = document.getElementById('sumaPesosLabel');
         const consolidarButton = document.querySelector('button');
 
-        let paquetes = [];
+        const filtroGrupo = document.getElementById("filtroGrupo");
+
+        var paquetes = [];
 
         listarCamiones();
 
@@ -164,10 +114,8 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Limpiar el combobox
-                    camionesSelect.innerHTML = '';
 
-                    // Iterar sobre los camiones y agregar opciones al combobox
+                    camionesSelect.innerHTML = '';
                     data.forEach(camion => {
                         const option = document.createElement('option');
                         option.value = camion.id_camion;
@@ -180,6 +128,14 @@
                 });
         }
 
+        function desmarcarCheckboxes() {
+            const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]');
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+            });
+        }
+
+
         function cargarPaquetes() {
             fetch('http://127.0.0.1:8003/api/Paquete', {
                 method: 'GET',
@@ -190,133 +146,206 @@
                 .then(response => response.json())
                 .then(data => {
                     paquetes = data;
-                    actualizarTabla();
+                    actualizarTabla(paquetes);
                 })
                 .catch(error => {
                     console.error('Error al cargar los datos:', error);
                 });
         }
 
-        function actualizarTabla() {
-            const departamentoSeleccionado = filtroDepartamento.value;
+        function actualizarTabla(paquetes) {
+
+
+            //const departamentoSeleccionado = filtroDepartamento.value;
+            const grupoSeleccionado = filtroGrupo.value;
             const pesoSeleccionado = parseFloat(filtroPeso.value);
             paquetesData.innerHTML = '';
             let sumaPesos = 0.0;
 
             paquetes.forEach(paquete => {
-                if (
-                    (!departamentoSeleccionado || paquete.departamento === departamentoSeleccionado) &&
-                    (!pesoSeleccionado || parseFloat(paquete.peso) <= pesoSeleccionado)
-                ) {
+                
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${paquete.id}</td>
-                        <td>${paquete.calle}</td>
+                        <td>${paquete.descripcion}</td>
                         <td>${paquete.numero}</td>
+                        <td>${paquete.calle}</td>                        
                         <td>${paquete.localidad}</td>
                         <td>${paquete.departamento}</td>
-                        <td>${paquete.estatus}</td>
+                        <td>${paquete.telefono}</td>                        
                         <td>${paquete.tamaño}</td>
                         <td>${paquete.peso}</td>
-                        <td>${paquete.telefono}</td>
-                        <td>${paquete.fecha}</td>
-                        <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}"></td>
+                        <td>${paquete.fecha_creacion}</td>
+                        <td>${paquete.hora_creacion}</td>
+                        <td>${paquete.codigo_seguimiento}</td>
+                        <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}" data-peso="${paquete.peso}"></td>
+                        <td><select class="form-control" onchange="cambiarEstado(this, ${paquete.id})">
+        <option value="Ingresado" ${paquete.estado === 'Ingresado' ? 'selected' : ''}>Ingresado</option>
+        <option value="En almacen origen" ${paquete.estado === 'En almacen origen' ? 'selected' : ''}>En almacen origen</option>
+        <option value="En transito" ${paquete.estado === 'En transito' ? 'selected' : ''}>En transito</option>
+        <option value="En almacen destino" ${paquete.estado === 'En almacen destino' ? 'selected' : ''}>En almacen destino</option>
+        <option value="Disponible en pick up" ${paquete.estado === 'Disponible en pick up' ? 'selected' : ''}>Disponible en pick up</option>
+        <option value="En distribucion" ${paquete.estado === 'En distribucion' ? 'selected' : ''}>En distribucion</option>
+        <option value="Reagenda entrega" ${paquete.estado === 'Reagenda entrega' ? 'selected' : ''}>Reagenda entrega</option>
+        <option value="Entregado" ${paquete.estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
+    </select>
+</td>
+
+
                     `;
                     paquetesData.appendChild(row);
-                }
+                
             });
 
             const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function () {
+                    const pesoDelPaquete = parseFloat(this.getAttribute('data-peso'));
+
                     if (this.checked) {
-                        sumaPesos += parseFloat(this.value);
+                        sumaPesos += pesoDelPaquete;
                     } else {
-                        sumaPesos -= parseFloat(this.value);
+                        sumaPesos -= pesoDelPaquete;
                     }
                     sumaPesosLabel.textContent = `Peso Total del envío en kg: ${sumaPesos.toFixed(2)} kg`;
+
+                    if (sumaPesos >= 1000) {
+                        alert("El peso total es igual o mayor a 1000 kg. Máxima capacidad de carga alcanzada");
+                        sumaPesosLabel.textContent = `Peso Total del envío en kg: 0.00 kg`;
+                        desmarcarCheckboxes();
+                    }
                 });
             });
         }
 
-        filtroDepartamento.addEventListener('change', actualizarTabla);
-        filtroPeso.addEventListener('change', actualizarTabla);
+
         cargarPaquetes();
+        listarCamiones();
 
-        function consolidarPaquetes() {
-            const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]:checked');
-            const loteValue = parseInt(document.getElementById('inputLote').value);
-            const camionSeleccionado = parseInt(camionesSelect.value); // Obtener el valor seleccionado del combobox como número entero
 
-            if (isNaN(loteValue)) {
-                alert("Ingresa un valor de lote válido.");
-                return;
-            }
 
-            if (checkboxes.length === 0) {
-                alert("Selecciona al menos un paquete para consolidar.");
-                return;
-            }
 
-            const paquetesAConsolidar = Array.from(checkboxes).map(checkbox => {
-                return {
-                    paqueteId: parseInt(checkbox.value),
-                    lote: loteValue,
-                    estatus: "Consolidado",
-                    camionId: camionSeleccionado
-                };
-            });
+    function consolidarPaquetes() {
+    const camionSeleccionado = parseInt(document.getElementById('camionesSelect').value);
+    const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]:checked');
 
-            const url = 'http://127.0.0.1:8003/api/PaqueteLote';
+    if (checkboxes.length === 0) {
+        alert("Selecciona al menos un paquete para consolidar.");
+        return;
+    }
 
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ Paquetes: paquetesAConsolidar }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message);
-                    cargarPaquetes();
-                } else {
-                    alert('Error al consolidar paquetes.');
-                }
-            })
-            .catch(error => {
-                console.error('Error al consolidar paquetes:', error);
-            });
+    const selectedPackages = Array.from(checkboxes).map(checkbox => checkbox.value);
+    const data = {
+        selectedCamion: camionSeleccionado,
+        selectedPackages: JSON.stringify({ Paquetes: selectedPackages })
+    };
+
+
+
+
+    fetch('http://127.0.0.1:8003/api/PaqueteLote', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Paquetes consolidados correctamente.");          
+            cargarPaquetes();
+        } else {
+            alert("Hubo un error al consolidar los paquetes.");
         }
-		
-		    $(document).ready(function(){
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+}
+
+
+
+filtroGrupo.addEventListener("change", function() {
+
+const selectedGrupo = this.value;
+const paquetesFiltrados= [];
+
+paquetes.forEach(row => {
+    const departamento = row.departamento;
+
+    if (selectedGrupo === "" || 
+(selectedGrupo === "Grupo 5" && (departamento === "Maldonado" || departamento === "Rocha")) ||
+(selectedGrupo === "Grupo 4" && (departamento === "Lavalleja" || departamento === "Trinta y Tres" || departamento === "Cerro Largo")) ||
+(selectedGrupo === "Grupo 3" && (departamento === "Flores" || departamento === "San José" || departamento === "Paysandú" || departamento === "Salto")) ||  // Agregado "||" después de "Paysandú"
+(selectedGrupo === "Grupo 2" && (departamento === "Colonia" || departamento === "Río Negro" || departamento === "Soriano")) ||
+(selectedGrupo === "Grupo 1" && (departamento === "Montevideo" || departamento === "Canelones" || departamento === "Florida" || departamento === "Durazno" || departamento === "Rivera" || departamento === "Artigas" || departamento === "Tacuarembó"))) {
+paquetesFiltrados.push(row);
+} 
+
+});
+
+      actualizarTabla(paquetesFiltrados);
+});
+
+
+
+        $(document).ready(function () {
             var token = localStorage.getItem("accessToken");
-            if(token == null)
-            $(location).prop('href', '/ADN/login.html');
-            
-            $("#cerrarSesion").click(function(){
-                jQuery.ajax({  
-                    url: 'http://127.0.0.1:8001/api/logout',  
+            if (token == null)
+                $(location).prop('href', '/ADN/Login_Almacen.html');
+
+            $("#cerrarSesion").click(function () {
+                jQuery.ajax({
+                    url: 'http://127.0.0.1:8001/api/logout',
                     type: 'GET',
                     headers: {
-                        "Authorization" : "Bearer " + localStorage.getItem("accessToken"),
-                        "Accept" : "application/json",
-                        "Content-Type" : "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("accessToken"),
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
                     },
-                    success: function(data) {  
+                    success: function (data) {
                         localStorage.removeItem("accessToken");
-                        $(location).prop('href', '/ADN/login.html');
+                        $(location).prop('href', '/ADN/Login_Almacen.html');
                     }
-                    
-                });  
+
+                });
             });
-            
+
+        });
+        function cambiarEstado(select, paqueteId) {
+        const nuevoEstado = select.value;
+
+    fetch(`http://127.0.0.1:8003/api/PaqueteEstado/${paqueteId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ estado: nuevoEstado }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(`El estado del paquete ${paqueteId} se cambió a "${nuevoEstado}".`);
+            cargarPaquetes(); 
+        } else {
+            alert("Hubo un error al cambiar el estado del paquete.");
+            cargarPaquetes(); 
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud API:', error);
+        cargarPaquetes();
+    });
+}
+        window.addEventListener('beforeunload', function() {
+            localStorage.removeItem("accessToken");
         });
 
 
 
+
+
     </script>
-	    <button id="cerrarSesion">Cerrar sesion</button>
+
 </body>
+
 </html>
