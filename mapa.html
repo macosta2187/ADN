@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consolidar</title>   
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <style>
@@ -34,18 +34,19 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="searchId">ID del paquete a buscar:</label>
-                <input type="number" id="searchId" class="form-control">
+                <input type="number" id="searchId" class="form-control" min="1">
             </div>
             <div class="col-md-2">
                 <label>&nbsp;</label>
                 <button class="btn btn-primary form-control" id="searchBtn">Buscar</button>
             </div>
         </div>
-        <table class="table table-dark" id="paquetes-table">
+        <table class="table table-striped" id="paquetes-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Articulo</th>
                     <th>Estado</th>
                 </tr>
             </thead>
@@ -73,9 +74,19 @@
     </div>
 </div>
 
-		
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		
     <script>
+
+$(document).ready(function() {
+        $('#paquetes-tabla').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.9011, lng: -56.1645 },
@@ -130,11 +141,13 @@
                                 document.getElementById('time').textContent = time;
                             } else {
                                 console.log('Error al obtener la ruta:', status);
+                                
                             }
                         });
                     })
                     .catch(error => {
-                        console.error('Error al obtener la información de la ruta:', error);
+                        alert('No hay presente un paquete con ese id');
+
                     });
             });
 
@@ -159,8 +172,5 @@
         }
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
