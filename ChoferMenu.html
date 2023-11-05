@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/almacen_menu.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="./Gestion Choferes.html">Gestion Lotes</a>
+  <a href="./mapa.html">Seguimiento</a>
+</div>
+
+<div id="main" class="container">
+  <h2>Bienvenido</h2>
+  <p>Sistema de control Choferes</p>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+  <button id="cerrarSesion" class="btn btn-danger">Cerrar sesión</button>
+</div>
+
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/almacen_menu.js"></script>
+</body>
+</html>

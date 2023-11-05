@@ -156,7 +156,6 @@
         function actualizarTabla(paquetes) {
 
 
-            //const departamentoSeleccionado = filtroDepartamento.value;
             const grupoSeleccionado = filtroGrupo.value;
             const pesoSeleccionado = parseFloat(filtroPeso.value);
             paquetesData.innerHTML = '';
@@ -218,12 +217,8 @@
             });
         }
 
-
         cargarPaquetes();
         listarCamiones();
-
-
-
 
     function consolidarPaquetes() {
     const camionSeleccionado = parseInt(document.getElementById('camionesSelect').value);

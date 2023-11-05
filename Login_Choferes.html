@@ -119,7 +119,7 @@
         $(document).ready(function() {
             var token = localStorage.getItem("accessToken");
             if (token != null)
-                $(location).prop('href', '/ADN/Gestion Choferes.html');
+                $(location).prop('href', '/ADN/ChoferMenu.html');
 
             $("#btnLogin").click(function() {
                 var email = $("#email").val();
@@ -141,7 +141,7 @@
 
                     success: function(data) {
                         localStorage.setItem("accessToken", data.access_token);
-                        $(location).prop('href', '/ADN/Gestion Choferes.html');
+                        $(location).prop('href', '/ADN/ChoferMenu.html');
                     },
 
                     error: function(data) {                       
