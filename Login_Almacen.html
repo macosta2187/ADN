@@ -49,6 +49,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/login.js"></script>
+	
+	
+	
+    <script>
+       
+        var emailInput = document.getElementById("email");
+
+        
+        document.getElementById("btnLogin").addEventListener("click", function () {
+            
+            var email = emailInput.value;
+
+            if (email) {
+                
+                localStorage.setItem("miEmail", email);
+                alert("Email guardado en localStorage.");
+            } else {
+                alert("Por favor, ingrese un correo electrónico antes de guardar.");
+            }
+        });
+    </script>
+	
 </body>
 
 </html>

@@ -22,7 +22,7 @@
 
       <div class="user">
         <img src="imagen/ProfilePic.jpeg" alt="Foto de usuario">
-        <span class='user-nombre'>Usuario</span>
+        <span class='user-nombre' id="userEmail"></span>
       </div>
 
       <nav class="menu-nav">
@@ -42,24 +42,22 @@
         <h2>Bienvenido, Usuario</h2>
       </div>
     </div>
+	
+	
 
   </div>
-  <!--
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="./Paquetes.html">Alta de Paquetes</a>
-  <a href="./GestionAlmacen.html">Gestión Almacén</a>
-</div>
 
-<div id="main" class="container">
-  <h2>Bienvenido</h2>
-  <p>Sistema de control y monitoreo de paquetes</p>
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-  <button id="cerrarSesion" class="btn btn-danger">Cerrar sesión</button>
-</div>
--->
   <script src="js/jquery.min.js"></script>
   <script src="js/almacen_menu.js"></script>
+  
+    <script>
+    
+    var userEmail = localStorage.getItem("miEmail");    
+    if (userEmail) {
+       document.querySelector('.user-nombre').textContent = " " + userEmail;
+    }
+  </script>
+
 
 </body>
 

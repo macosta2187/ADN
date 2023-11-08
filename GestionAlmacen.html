@@ -22,7 +22,7 @@
       
           <div class="user">
             <img src="imagen/ProfilePic.jpeg" alt="Foto de usuario">
-            <span class='user-nombre'>Usuario</span>
+             <span class='user-nombre' id="userEmail"></span>
           </div>
       
           <nav class="menu-nav">
@@ -105,7 +105,13 @@
     <script src="js/gestion_almacen.js"></script>
 	
 	
-	
+	 <script>
+    
+    var userEmail = localStorage.getItem("miEmail");    
+    if (userEmail) {
+       document.querySelector('.user-nombre').textContent = " " + userEmail;
+    }
+  </script>
 
 </body>
 
