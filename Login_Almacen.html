@@ -54,20 +54,14 @@
 	
     <script>
        
-        var emailInput = document.getElementById("email");
-
-        
+        var emailInput = document.getElementById("email");        
         document.getElementById("btnLogin").addEventListener("click", function () {
             
             var email = emailInput.value;
 
-            if (email) {
-                
-                localStorage.setItem("miEmail", email);
-                alert("Email guardado en localStorage.");
-            } else {
-                alert("Por favor, ingrese un correo electrónico antes de guardar.");
-            }
+            if (email) {                
+                localStorage.setItem("miEmail", email);                
+            } 
         });
     </script>
 	

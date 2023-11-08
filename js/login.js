@@ -28,10 +28,9 @@ $(document).ready(function () {
                 $(location).prop('href', '/ADN/AlmacenMenu.html');
             },
 
-            error: function (data) {
-                // Mostrar el mensaje de error en el modal
-                $("#modalMessage").text("Credenciales inválidas");
-                $('#myModal').modal('show');
+            error: function (data) {                
+                alert("Credenciales inválidas");
+               
             }
         });
     });
