@@ -1,132 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="imagen/favicon.png"/>
+    <link href="css/almacen_menu.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
     <title>Formulario de Ingreso de Paquetes</title>
-</head>
-<body>
-    <h1 class="text-center mt-4 mb-3">Ingreso de Paquetes</h1>
-    <form id="myForm" class="container" action="http://127.0.0.1:8003/api/Paquete" method="POST">
-        <div class="form-group">
+  </head>
+  <body>
+    <div class="contenedor">
+      <div class="sidebar ancho">
+        <div class="logo align-center">
+          <img src="imagen/ADN_logo.png" alt="" />
+        </div>
+
+        <div class="user">
+          <img src="imagen/ProfilePic.jpeg" alt="Foto de usuario" />
+          <span class="user-nombre">Usuario</span>
+        </div>
+
+        <nav class="menu-nav">
+          <ul>
+            <li class="menu-items"><a href="./AlmacenMenu.html"><i class="fa fa-tachometer menu-nav--icon fa-fw"></i><span>Inicio</span></a></li>
+            <li class="menu-items"><a href="./Paquetes.html"><i id="seleccion" class="fa fa-cube menu-nav--icon fa-fw"></i><span id="seleccion" class="menu-items">Paquetes</span></a></li>
+            <li class="menu-items"><a href="./GestionAlmacen.html"><i class="fa fa-inbox menu-nav--icon fa-fw"></i><span class="menu-items">Almacen</span></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main bg-light">
+        <div class="barra">
+          <a class="menu-toggle"><i class="fa fa-bars menu-nav--icon"></i></a>
+          <a id="cerrarSesion" class="float-end btn btn-secondary">Cerrar Sesion</a>
+        </div>
+        <h2 class="text-center mt-4 mb-3">Ingresar paquete</h2>
+        <form id="myForm" class="container" action="http://127.0.0.1:8003/api/Paquete" method="POST">
+		
+		
+          <div class="form-group">
             <label for="descripcion">Descripción:</label>
-            <input type="text" class="form-control" id="descripcion" name="descripcion" required maxlength="50">
-        </div>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" required maxlength="50"/>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label for="calle">Calle:</label>
-            <input type="text" class="form-control" id="calle" name="calle" required maxlength="50">
-        </div>
+            <input type="text" class="form-control" id="calle" name="calle" required maxlength="50"/>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label for="numero">Número:</label>
-            <input type="text" class="form-control" id="numero" name="numero" required maxlength="5">
-        </div>
+            <input type="text" class="form-control" id="numero" name="numero" required maxlength="5"/>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label for="localidad">Localidad:</label>
-            <input type="text" class="form-control" id="localidad" name="localidad" required maxlength="25">
-        </div>
+            <input type="text" class="form-control" id="localidad" name="localidad" required maxlength="25"/>
+          </div>
 
-        <div class="form-group">
-<label for="departamento">Departamento:</label>
-<select class="form-control" id="departamento" name="departamento" required>
-    <option value="Artigas">Artigas</option>
-    <option value="Canelones">Canelones</option>
-    <option value="Cerro Largo">Cerro Largo</option>
-    <option value="Colonia">Colonia</option>
-    <option value="Durazno">Durazno</option>
-    <option value="Flores">Flores</option>
-    <option value="Florida">Florida</option>
-    <option value="Lavalleja">Lavalleja</option>
-    <option value="Maldonado">Maldonado</option>
-    <option value="Montevideo">Montevideo</option>
-    <option value="Paysandú">Paysandú</option>
-    <option value="Río Negro">Río Negro</option>
-    <option value="Rivera">Rivera</option>
-    <option value="Rocha">Rocha</option>
-    <option value="Salto">Salto</option>
-    <option value="San José">San José</option>
-    <option value="Soriano">Soriano</option>
-    <option value="Tacuarembó">Tacuarembó</option>
-    <option value="Treinta y Tres">Treinta y Tres</option>
-    
-</select>
+          <div class="form-group">
+            <label for="departamento">Departamento:</label>
+            <select class="form-control" id="departamento" name="departamento" required>
+              <option value="Artigas">Artigas</option>
+              <option value="Canelones">Canelones</option>
+              <option value="Cerro Largo">Cerro Largo</option>
+              <option value="Colonia">Colonia</option>
+              <option value="Durazno">Durazno</option>
+              <option value="Flores">Flores</option>
+              <option value="Florida">Florida</option>
+              <option value="Lavalleja">Lavalleja</option>
+              <option value="Maldonado">Maldonado</option>
+              <option value="Montevideo">Montevideo</option>
+              <option value="Paysandú">Paysandú</option>
+              <option value="Río Negro">Río Negro</option>
+              <option value="Rivera">Rivera</option>
+              <option value="Rocha">Rocha</option>
+              <option value="Salto">Salto</option>
+              <option value="San José">San José</option>
+              <option value="Soriano">Soriano</option>
+              <option value="Tacuarembó">Tacuarembó</option>
+              <option value="Treinta y Tres">Treinta y Tres</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" required maxlength="9"/>
+          </div>
+
+          <div class="form-group">
+            <label for="estado">Estatus:</label>
+            <select class="form-control" id="estado" name="estado" required>
+              <option value="Ingresado">Ingresado</option>
+              <option value="En almacén origen">En almacén origen</option>
+              <option value="En tránsito">En tránsito</option>
+              <option value="En almacén destino">En almacén destino</option>
+              <option value="Disponible en pick up">Disponible en pick up</option>
+              <option value="En distribución">En distribución</option>
+              <option value="Reagenda entrega">Reagenda entrega</option>
+              <option value="Entregado">Entregado</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="tamaño">tamaño:</label>
+            <input type="number" step="0.01" class="form-control" id="tamaño" name="tamaño"/>
+          </div>
+
+          <div class="form-group">
+            <label for="peso">Peso:</label>
+            <input type="number" step="0.01" class="form-control" id="peso" name="peso"/>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_creacion">Fecha:</label>
+            <input type="date" class="form-control"  id="fecha_creacion" name="fecha_creacion" required readonly/>
+          </div>
+
+          <div class="form-group">
+            <label for="hora_creacion">Hora:</label>
+            <input type="time" class="form-control" id="hora_creacion" name="hora_creacion" required readonly/>
+          </div>
+
+   <div class="form-group">
+    <label for="empresa">Selecciona una empresa:</label>
+    <select class="form-control" id="empresa" name="empresa" required>
+        <option value=""></option>
+    </select>
 </div>
 
-
-        <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" required maxlength="9">
-        </div>
 
 <div class="form-group">
-<label for="estado">Estatus:</label>
-<select class="form-control" id="estado" name="estado" required>
-    <option value="Ingresado">Ingresado</option>
-    <option value="En almacén origen">En almacén origen</option>
-    <option value="En tránsito">En tránsito</option>
-    <option value="En almacén destino">En almacén destino</option>
-    <option value="Disponible en pick up">Disponible en pick up</option>
-    <option value="En distribución">En distribución</option>
-    <option value="Reagenda entrega">Reagenda entrega</option>
-    <option value="Entregado">Entregado</option>
-</select>
+    <label for="cliente_ci">Cédula del Cliente:</label>
+    <input type="text" class="form-control" id="cliente_ci" name="cliente_ci" required maxlength="8">
+    <div class="alert alert-danger" id="cliente_ci_error" style="display: none;">El cliente no existe en el sistema.</div>
 </div>
 
-    
 
 
-        <div class="form-group">
-            <label for="tamaño">tamaño:</label>
-            <input type="number" step="0.01" class="form-control" id="tamaño" name="tamaño">
-        </div>
 
-        <div class="form-group">
-            <label for="peso">Peso:</label>
-            <input type="number" step="0.01" class="form-control" id="peso" name="peso">
-        </div>
+          <button id="paquete" type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
 
-        <div class="form-group">
-            <label for="fecha_creacion">Fecha:</label>
-            <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" required readonly>
-        </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/paquetes.js"></script>
+	
 
-        <div class="form-group">
-            <label for="hora_creacion">Hora:</label>
-            <input type="time" class="form-control" id="hora_creacion" name="hora_creacion" required readonly>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
-
-    <script>
-$(document).ready(function () {
-    
-    const now = new Date();
-    now.setUTCHours(now.getUTCHours() + 3);    
-    now.setHours(now.getHours() - 3);
-
-   
-    const formattedDate = now.toISOString().substr(0, 10);   
-    const formattedTime = now.toTimeString().substr(0, 5);
-
-    $('#fecha_creacion').val(formattedDate);
-    $('#hora_creacion').val(formattedTime);
-});
-
-
-    </script>
-
-<script src="js/jquery.min.js"></script>
-<script src="js/paquetes.js"></script>
-
-</body>
+  </body>
 </html>
-
-   
