@@ -2,40 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/almacen_menu.css" rel="stylesheet">
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="imagen/favicon.png" />
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/almacen_menu.css" rel="stylesheet">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Menu Almacen</title>
 </head>
+
 <body>
+  <div class="contenedor">
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="./Paquetes.html">Alta de Paquetes</a>
-  <a href="./GestionAlmacen.html">Gestión Almacén</a>
-</div>
+    <div class="sidebar ancho">
+      <div class="logo align-center">
+        <img src="imagen/ADN_logo.png" alt="">
+      </div>
 
-<div id="main" class="container">
-  <h2>Bienvenido</h2>
-  <p>Sistema de control y monitoreo de paquetes</p>
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-  <button id="cerrarSesion" class="btn btn-danger">Cerrar sesión</button>
-</div>
+      <div class="user">
+        <img src="imagen/ProfilePic.jpeg" alt="Foto de usuario">
+        <span class='user-nombre' id="userEmail"></span>
+      </div>
+
+      <nav class="menu-nav">
+        <ul>
+          <li class="menu-items"><a href="./AlmacenMenu.html"><i id="seleccion" class='fa fa-tachometer  menu-nav--icon fa-fw'></i><span id="seleccion">Inicio</span></a></li>
+          <li class="menu-items"><a href="./Paquetes.html"><i class='fa fa-cube  menu-nav--icon fa-fw'></i><span class="menu-items">Paquetes</span></a></li>
+          <li class="menu-items"><a href="./GestionAlmacen.html"><i class='fa fa-inbox  menu-nav--icon fa-fw'></i><span class="menu-items">Almacen</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main bg-light">
+      <div class="barra">
+        <a class='menu-toggle'><i class="fa fa-bars menu-nav--icon"></i></a>
+        <a id="cerrarSesion" class="float-end btn btn-secondary">Cerrar Sesion</a>
+      </div>
+      <div>
+        <h2>Bienvenido, Usuario</h2>
+      </div>
+    </div>
+	
+	
+
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/almacen_menu.js"></script>
+  
+    <script>
+    
+    var userEmail = localStorage.getItem("miEmail");    
+    if (userEmail) {
+       document.querySelector('.user-nombre').textContent = " " + userEmail;
+    }
+  </script>
 
 
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/almacen_menu.js"></script>
 </body>
+
 </html>
