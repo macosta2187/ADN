@@ -14,19 +14,20 @@
 </head>
 
 <body>
-    
+
     <div class="back">
-<div class="div-center">
-    <div id="login">
-        <h3>Login Almacen</h3>
-        <hr />
-        Email: <input type="text" name="email" id="email" maxlength="50"> <br> <br>
-        Contraseña: <input type="password" name="contraseña" id="contraseña" required minlength="12" maxlength="12">
-        <br>
-        <button id="btnLogin">Iniciar sesión</button>
+        <div class="div-center">
+            <div id="login">
+                <h3>Login Almacen</h3>
+                <hr />
+                Email: <input type="text" name="email" id="email" maxlength="50"> <br> <br>
+                Contraseña: <input type="password" name="contraseña" id="contraseña" required minlength="12"
+                    maxlength="12">
+                <br>
+                <button id="btnLogin">Iniciar sesión</button>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -34,9 +35,9 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
                 </div>
-                <div class="modal-body" id="modalMessage">
+                <div class="modal-body" id="modalMessage"></div>
 
-                </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -48,23 +49,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script src="js/login.js"></script>
-	
-	
-	
-    <script>
-       
-        var emailInput = document.getElementById("email");        
-        document.getElementById("btnLogin").addEventListener("click", function () {
-            
-            var email = emailInput.value;
+    <script src="js/login_almacen.js"></script>
 
-            if (email) {                
-                localStorage.setItem("miEmail", email);                
-            } 
-        });
-    </script>
-	
 </body>
 
 </html>

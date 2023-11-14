@@ -2,40 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/almacen_menu.css" rel="stylesheet">
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="imagen/favicon.png" />
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/choferes_menu.css" rel="stylesheet">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Menu Chofer</title>
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="./Gestion Choferes.html">Gestion Lotes</a>
-  <a href="./mapa.html">Seguimiento</a>
+<div class="contenedor">
+
+  <div class="sidebar ancho">
+    <div class="logo align-center">
+      <img src="imagen/ADN_logo.png" alt="">
+    </div>
+
+    <div class="user">
+      <img src="imagen/ProfilePic.jpeg" alt="Foto de usuario">
+      <span class='user-nombre' id="userEmail"></span>
+    </div>
+
+    <nav class="menu-nav">
+      <ul>
+        <li class="menu-items"><a href="./ChoferMenu.html"><i id="seleccion" class='fa fa-home  menu-nav--icon fa-fw'></i><span class="menu-items" id="seleccion">Inicio</span></a></li>
+        <li class="menu-items"><a href="./GestionChoferes.html"><i class='fa fa-truck  menu-nav--icon fa-fw'></i><span class="menu-items">Lotes</span></a></li>
+        <li class="menu-items"><a href="./mapa.html"><i class='fa fa-globe  menu-nav--icon fa-fw'></i><span class="menu-items">Destino</span></a></li>
+        <li class="menu-items"><a href=#><i class='fa fa-download  menu-nav--icon fa-fw'></i><span class="menu-items">Manual usuario</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="main bg-light">
+    <div class="barra">
+      <a class='menu-toggle'><i class="fa fa-bars menu-nav--icon"></i></a>
+      <a id="cerrarSesion" class="float-end btn btn-secondary">Cerrar Sesion</a>
+    </div>
+    <div>
+      <h2>Bienvenido, <span class="user-nombre2"></span></h2>
+    </div>
+  </div>
 </div>
 
-<div id="main" class="container">
-  <h2>Bienvenido</h2>
-  <p>Sistema de control Choferes</p>
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-  <button id="cerrarSesion" class="btn btn-danger">Cerrar sesión</button>
-</div>
 
-
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
 
     <script src="js/jquery.min.js"></script>
-    <script src="js/almacen_menu.js"></script>
+    <script src="js/chofer_menu.js"></script>
 </body>
 </html>
