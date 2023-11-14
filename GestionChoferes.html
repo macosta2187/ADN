@@ -54,8 +54,7 @@
                         </tr>
                     </thead>
                     <tbody id="data"></tbody>
-                </table>
-                <button id="btnListar" class="btn btn-primary">Listar Lotes</button>
+                </table>                
             </div>
           </div>
         </div>
@@ -95,10 +94,10 @@
                 });
         }
 
-        document.getElementById("btnListar").addEventListener("click", function () {
-            if ($.fn.DataTable.isDataTable('#myTable')) {
-                $('#myTable').DataTable().destroy();
-            }
+        $(document).ready(function () {
+    if ($.fn.DataTable.isDataTable('#myTable')) {
+        $('#myTable').DataTable().destroy();
+    }
 
             fetch("http://127.0.0.1:8003/api/Lote")
                 .then(response => response.json())
