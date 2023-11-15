@@ -4,173 +4,112 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consolidar</title>   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-
-        #info-panel {
-       background-color: #fff;
-       opacity: 0.8;
-       position: absolute;
-       bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px;
-      width: 80%; 
-      max-width: 500px; 
-      border: 1px solid #ddd;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="imagen/favicon.png"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/mapa.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Destino</title>   
 </head>
 <body>
-    <div class="container">
-        <h1 class="mt-5">Listado de Paquetes en Tránsito en tiempo Real</h1>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="searchId">ID del paquete a buscar:</label>
-                <input type="number" id="searchId" class="form-control" min="1">
-            </div>
-            <div class="col-md-2">
-                <label>&nbsp;</label>
-                <button class="btn btn-primary form-control" id="searchBtn">Buscar</button>
-            </div>
+    <div class="contenedor">
+
+        <div class="sidebar ancho">
+          <div class="logo align-center">
+            <img src="imagen/ADN_logo.png" alt="">
+          </div>
+      
+          <div class="user">
+            <img src="imagen/ProfilePic.jpeg" alt="Foto de usuario">
+            <span class='user-nombre' id="userEmail"></span>
+          </div>
+      
+          <nav class="menu-nav">
+            <ul>
+              <li class="menu-items"><a href="./ChoferMenu.html"><i class='fa fa-home  menu-nav--icon fa-fw'></i><span class="menu-items">Inicio</span></a></li>
+              <li class="menu-items"><a href="./GestionChoferes.html"><i class='fa fa-truck  menu-nav--icon fa-fw'></i><span class="menu-items">Lotes</span></a></li>
+              <li class="menu-items"><a href="./mapa.html"><i id="seleccion" class='fa fa-globe  menu-nav--icon fa-fw'></i><span class="menu-items" id="seleccion">Destino</span></a></li>
+              <li class="menu-items"><a href="https://github.com/macosta2187/Manual-Chofer/blob/develop/Manual%20de%20Chofer.pdf"><i class='fa fa-download  menu-nav--icon fa-fw'></i><span class="menu-items">Manual usuario</span></a></li>
+            </ul>
+          </nav>
         </div>
-        <table class="table table-striped" id="paquetes-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Articulo</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody id="paquetes-list"></tbody>
-        </table>
-    </div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTr31fxAnH9k082v-SDX4a9HZuAnubZpM&callback&callback=initMap" async defer></script>
-
-    <div class="container">
-        <h1 class="mt-5">Viaje a destino</h1>
-        <div id="map" class="mt-4"></div>
+        <div class="main bg-light">
+          <div class="barra">
+            <a class='menu-toggle'><i class="fa fa-bars menu-nav--icon"></i></a>
+            <a id="cerrarSesion" class="float-end btn btn-secondary">Cerrar Sesion</a>
+          </div>
         
+            
+            <div class="container">
+                <h2 class="text-center text-white bg-secondary p-2 mt-5">Paquetes en tránsito</h2>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="searchId">ID del paquete a buscar:</label>
+                        <input type="number" id="searchId" class="form-control" min="1">
+                    </div>
+                    <div class="col-md-2">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary form-control" id="searchBtn">Buscar</button>
+                    </div>
+                </div>
+                <table class="table table-hover" id="paquetes-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Articulo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paquetes-list"></tbody>
+                </table>
+            </div>
+        
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTr31fxAnH9k082v-SDX4a9HZuAnubZpM&callback&callback=initMap" async defer></script>
+        
+            <div class="container">
+                <h2 class="text-center text-white bg-secondary p-2 mt-5">Trayecto paquete</h2>
+                <div id="map" class="mt-4"></div>
+                
+            </div>
+            
+        
+        
+        <div class="container">
+            
+            <div id="map" class="mt-4"></div>
+            <div id="info-panel" class="mt-3">
+                <strong>Distancia: </strong><span id="distance"></span><br>
+                <strong>Ruta: </strong><span id="route"></span><br>
+                <strong>Tiempo: </strong><span id="time"></span>
+            </div>
         </div>
-    </div>
 
 
-<div class="container">
+          
+        </div>
+      </div>
+      
+
+
+
+
+
+
+
+
+
+
     
-    <div id="map" class="mt-4"></div>
-    <div id="info-panel" class="mt-3">
-        <strong>Distancia: </strong><span id="distance"></span><br>
-        <strong>Ruta: </strong><span id="route"></span><br>
-        <strong>Tiempo: </strong><span id="time"></span>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		
-    <script>
-
-$(document).ready(function() {
-        $('#paquetes-tabla').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-            }
-        });
-    });
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.9011, lng: -56.1645 },
-                zoom: 13
-            });
-
-            document.getElementById('searchBtn').addEventListener('click', function () {
-                const searchId = document.getElementById('searchId').value;
-
-                
-                fetch(`http://127.0.0.1:8002/api/listar-rutas/${searchId}`)
-
-                    .then(response => response.json())
-                    .then(data => {
-                        var origen = new google.maps.LatLng(data.origen.latitud, data.origen.longitud);
-                        var destino = new google.maps.LatLng(data.destino.latitud, data.destino.longitud);
-
-                        var origenMarker = new google.maps.Marker({
-                            position: origen,
-                            map: map,
-                            title: data.origen.nombre
-                        });
-
-                        var destinoMarker = new google.maps.Marker({
-                            position: destino,
-                            map: map,
-                            title: data.destino.nombre
-                        });
-
-                        var request = {
-                            origin: origen,
-                            destination: destino,
-                            travelMode: 'DRIVING'
-                        };
-
-                        var directionsService = new google.maps.DirectionsService();
-                        var directionsDisplay = new google.maps.DirectionsRenderer();
-
-                        directionsDisplay.setMap(map);
-
-                        directionsService.route(request, function(response, status) {
-                            if (status === 'OK') {
-                                directionsDisplay.setDirections(response);
-
-                                var route = response.routes[0].legs[0];
-                                var distance = route.distance.text;
-                                var routeText = route.start_address + ' - ' + route.end_address;
-                                var time = route.duration.text;
-
-                                document.getElementById('distance').textContent = distance;
-                                document.getElementById('route').textContent = routeText;
-                                document.getElementById('time').textContent = time;
-                            } else {
-                                console.log('Error al obtener la ruta:', status);
-                                
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        alert('No hay presente un paquete con ese id');
-
-                    });
-            });
-
-            fetch('http://127.0.0.1:8002/api/paquetes-en-transito') 
-                .then(response => response.json())
-                .then(data => {
-                    const paquetesList = document.getElementById('paquetes-list');
-                    data.forEach(paquete => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${paquete.id}</td>
-                            <td>${paquete.departamento}</td>
-                            <td>${paquete.descripcion}</td>
-                            <td>${paquete.estado}</td>
-                        `;
-                        paquetesList.appendChild(row);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al obtener la lista de paquetes:', error);
-                });
-        }
-    </script>
+<script src="js/jquery.min.js"></script>
+<script src="js/mapa.js"></script>
 
 </body>
 </html>

@@ -27,9 +27,10 @@
       
           <nav class="menu-nav">
             <ul>
-              <li class="menu-items"><a href="./AlmacenMenu.html"><i class='fa fa-tachometer  menu-nav--icon fa-fw'></i><span>Inicio</span></a></li>
+              <li class="menu-items"><a href="./AlmacenMenu.html"><i class='fa fa-home  menu-nav--icon fa-fw'></i><span>Inicio</span></a></li>
               <li class="menu-items"><a href="./Paquetes.html"><i class='fa fa-cube  menu-nav--icon fa-fw'></i><span class="menu-items">Paquetes</span></a></li>
               <li class="menu-items"><a href="./GestionAlmacen.html"><i id="seleccion" class='fa fa-inbox  menu-nav--icon fa-fw'></i><span id="seleccion" class="menu-items">Almacen</span></a></li>
+              <li class="menu-items"><a href="https://github.com/macosta2187/Manual-Almacen/blob/develop/Manual%20de%20Almacen.pdf"><i class='fa fa-download  menu-nav--icon fa-fw'></i><span class="menu-items">Manual usuario</span></a></li>
             </ul>
           </nav>
         </div>
@@ -39,8 +40,9 @@
           <a id="cerrarSesion" class="float-end btn btn-secondary">Cerrar Sesion</a>
           </div>            
           <div class="container text-center">
+            <h2 class="text-center text-white bg-secondary p-2 mt-5">Gestión almacen</h2>
             <div class="row">
-                <div class="col-md-4 mx-auto mb-3">
+                <div class="col-md-3 mx-auto mb-3">
                     <div class="form-group">
                         <label for="filtroGrupo">Filtrar por Ruta:</label>
                         <select id="filtroGrupo" class="form-control">
@@ -53,27 +55,21 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 mx-auto mb-3">
+                <div class="col-md-3 mx-auto mb-3">
                     <div class="form-group">
                         <label for="camionesSelect">Selecciona un camión:</label>
                         <select id="camionesSelect" class="form-control"></select>
                     </div>
                 </div>
+                <div class="col-md-3 mx-auto mb-3">
+                    <button id="consolida" onclick="consolidarPaquetes()" class="btn btn-warning mx-auto d-block">Consolidar Paquetes</button>
+                </div>
             </div>          
         </div>
-        <div class="container text-center">
-            <div class="row">
-                  <div class="col-md-4 mx-auto mb-3">
-   
-                  </div>
-                  <div class="col-md-4 mx-auto mb-3">
-                    <button id="consolida" onclick="consolidarPaquetes()" class="btn btn-warning mx-auto d-block">Consolidar Paquetes</button>
-                  </div>
-            </div>
-        </div>                    
+                        
         <div class="alert alert-secondary" role="alert" id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
 
-    
+        <div class="table-responsive text-nowrap">
         <table class="table table-hover">
             <thead class="table-dark">
                 <tr>
@@ -95,190 +91,16 @@
             </thead>
             <tbody id="paquetesData"></tbody>
         </table>
-
+        </div>
     
       </div>
 
     </div>
 
-<<<<<<< HEAD
-
-
-    <table class="table table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th>Numero de Paquete</th>
-                <th>Descripcion</th>
-                <th>Numero</th>
-                <th>Calle</th>                
-                <th>Localidad</th>
-                <th>Departamento</th>
-                <th>Telefono</th>               
-                <th>Tamaño</th>
-                <th>Peso</th>
-                <th>Fecha de Ingreso</th>
-                <th>Hora de Ingreso</th>
-                <th>Tracking</th>
-                <th>Seleccionar</th>
-                <th>Cambio de Estado</th>               
-            </tr>
-        </thead>
-        <tbody id="paquetesData"></tbody>
-    </table>
-    <div class="alert alert-info" role="alert" id="sumaPesosLabel">Peso Total del envío en kg: 0.00 kg</div>
-    <button onclick="consolidarPaquetes()" class="btn btn-warning mx-auto d-block">Consolidar Paquetes</button>
-    <script>
-
-
-        const camionesSelect = document.getElementById('camionesSelect');
-        const filtroDepartamento = document.getElementById('filtroDepartamento');
-        const filtroPeso = document.getElementById('filtroPeso');
-        const paquetesData = document.getElementById('paquetesData');
-        const sumaPesosLabel = document.getElementById('sumaPesosLabel');
-        const consolidarButton = document.querySelector('button');
-
-        const filtroGrupo = document.getElementById("filtroGrupo");
-
-        var paquetes = [];
-
-        listarCamiones();
-
-        function listarCamiones() {
-            fetch('http://127.0.0.1:8002/api/Camiones', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-
-                    camionesSelect.innerHTML = '';
-                    data.forEach(camion => {
-                        const option = document.createElement('option');
-                        option.value = camion.id_camion;
-                        option.textContent = camion.id_camion;
-                        camionesSelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al cargar los camiones:', error);
-                });
-        }
-
-        function desmarcarCheckboxes() {
-            const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]');
-            checkboxes.forEach(cb => {
-                cb.checked = false;
-            });
-        }
-
-
-        function cargarPaquetes() {
-            fetch('http://127.0.0.1:8003/api/Paquete', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    paquetes = data;
-                    actualizarTabla(paquetes);
-                })
-                .catch(error => {
-                    console.error('Error al cargar los datos:', error);
-                });
-        }
-
-        function actualizarTabla(paquetes) {
-
-
-            const grupoSeleccionado = filtroGrupo.value;
-            const pesoSeleccionado = parseFloat(filtroPeso.value);
-            paquetesData.innerHTML = '';
-            let sumaPesos = 0.0;
-
-            paquetes.forEach(paquete => {
-                
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${paquete.id}</td>
-                        <td>${paquete.descripcion}</td>
-                        <td>${paquete.numero}</td>
-                        <td>${paquete.calle}</td>                        
-                        <td>${paquete.localidad}</td>
-                        <td>${paquete.departamento}</td>
-                        <td>${paquete.telefono}</td>                        
-                        <td>${paquete.tamaño}</td>
-                        <td>${paquete.peso}</td>
-                        <td>${paquete.fecha_creacion}</td>
-                        <td>${paquete.hora_creacion}</td>
-                        <td>${paquete.codigo_seguimiento}</td>
-                        <td><input type="checkbox" name="seleccionarPaquete" value="${paquete.id}" data-peso="${paquete.peso}"></td>
-                        <td><select class="form-control" onchange="cambiarEstado(this, ${paquete.id})">
-        <option value="Ingresado" ${paquete.estado === 'Ingresado' ? 'selected' : ''}>Ingresado</option>
-        <option value="En almacen origen" ${paquete.estado === 'En almacen origen' ? 'selected' : ''}>En almacen origen</option>
-        <option value="En transito" ${paquete.estado === 'En transito' ? 'selected' : ''}>En transito</option>
-        <option value="En almacen destino" ${paquete.estado === 'En almacen destino' ? 'selected' : ''}>En almacen destino</option>
-        <option value="Disponible en pick up" ${paquete.estado === 'Disponible en pick up' ? 'selected' : ''}>Disponible en pick up</option>
-        <option value="En distribucion" ${paquete.estado === 'En distribucion' ? 'selected' : ''}>En distribucion</option>
-        <option value="Reagenda entrega" ${paquete.estado === 'Reagenda entrega' ? 'selected' : ''}>Reagenda entrega</option>
-        <option value="Entregado" ${paquete.estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
-    </select>
-</td>
-
-
-                    `;
-                    paquetesData.appendChild(row);
-                
-            });
-
-            const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
-                    const pesoDelPaquete = parseFloat(this.getAttribute('data-peso'));
-
-                    if (this.checked) {
-                        sumaPesos += pesoDelPaquete;
-                    } else {
-                        sumaPesos -= pesoDelPaquete;
-                    }
-                    sumaPesosLabel.textContent = `Peso Total del envío en kg: ${sumaPesos.toFixed(2)} kg`;
-
-                    if (sumaPesos >= 1000) {
-                        alert("El peso total es igual o mayor a 1000 kg. Máxima capacidad de carga alcanzada");
-                        sumaPesosLabel.textContent = `Peso Total del envío en kg: 0.00 kg`;
-                        desmarcarCheckboxes();
-                    }
-                });
-            });
-        }
-
-        cargarPaquetes();
-        listarCamiones();
-
-    function consolidarPaquetes() {
-    const camionSeleccionado = parseInt(document.getElementById('camionesSelect').value);
-    const checkboxes = document.querySelectorAll('input[name="seleccionarPaquete"]:checked');
-
-    if (checkboxes.length === 0) {
-        alert("Selecciona al menos un paquete para consolidar.");
-        return;
-=======
     <script src="js/jquery.min.js"></script>
     <script src="js/gestion_almacen.js"></script>
 	
 	
-	 <script>
-    
-    var userEmail = localStorage.getItem("miEmail");    
-    if (userEmail) {
-       document.querySelector('.user-nombre').textContent = " " + userEmail;
->>>>>>> ad08495aabf3f890cd4adf7639af228915692ea1
-    }
-  </script>
-
 </body>
 
 </html>

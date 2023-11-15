@@ -22,6 +22,19 @@ $(document).ready(function () {
 
 });
 
+var userEmail = localStorage.getItem("miEmail");
+if (userEmail) {
+    document.querySelector('.user-nombre').textContent = " " + userEmail;
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+    var userEmail = localStorage.getItem("miEmail");
+    if (userEmail) {
+        document.querySelector('.user-nombre2').textContent = userEmail;
+        console.log("Valor de userEmail:", userEmail);
+    }
+});
+
 
 
 $('.menu-toggle').click(function () {

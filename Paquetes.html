@@ -27,9 +27,10 @@
 
         <nav class="menu-nav">
           <ul>
-            <li class="menu-items"><a href="./AlmacenMenu.html"><i class="fa fa-tachometer menu-nav--icon fa-fw"></i><span>Inicio</span></a></li>
+            <li class="menu-items"><a href="./AlmacenMenu.html"><i class="fa fa-home menu-nav--icon fa-fw"></i><span>Inicio</span></a></li>
             <li class="menu-items"><a href="./Paquetes.html"><i id="seleccion" class="fa fa-cube menu-nav--icon fa-fw"></i><span id="seleccion" class="menu-items">Paquetes</span></a></li>
             <li class="menu-items"><a href="./GestionAlmacen.html"><i class="fa fa-inbox menu-nav--icon fa-fw"></i><span class="menu-items">Almacen</span></a></li>
+            <li class="menu-items"><a href="https://github.com/macosta2187/Manual-Almacen/blob/develop/Manual%20de%20Almacen.pdf"><i class='fa fa-download  menu-nav--icon fa-fw'></i><span class="menu-items">Manual usuario</span></a></li>
           </ul>
         </nav>
       </div>
@@ -38,7 +39,9 @@
           <a class="menu-toggle"><i class="fa fa-bars menu-nav--icon"></i></a>
           <a id="cerrarSesion" class="float-end btn btn-secondary">Cerrar Sesion</a>
         </div>
-        <h2 class="text-center mt-4 mb-3">Ingresar paquete</h2>
+        <div class="container">
+        <h2 class="text-center text-white bg-secondary p-2 mt-5">Paquetes</h2>
+      </div>
         <form id="myForm" class="container" action="http://127.0.0.1:8003/api/Paquete" method="POST">
 		
 		
